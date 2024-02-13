@@ -21,42 +21,52 @@ function playRound(){
     }
     let ComputerChoice= getComputerChoice();
 
+    
+    let round={};
     if (playerChoice == "rock" && ComputerChoice =="scissors"){
-        return "user";
+        round["winner"]="user";
+        round["winnerWeapon"]="rock";
+        round["loserWeapon"]="scissors";
     }else if(playerChoice =="paper" && ComputerChoice == "rock"){
-        return "user";
+        round["winner"]="user";
+        round["winnerWeapon"]="paper";
+        round["loserWeapon"]="rock";
     }else if(playerChoice =="scissors" && ComputerChoice=="paper"){
-        return "user";
+        round["winner"]="user";
+        round["winnerWeapon"]="scissors";
+        round["loserWeapon"]="paper";
     }else if(playerChoice =="scissors" && ComputerChoice=="rock"){
-        return "computer";
+        round["winner"]="computer";
+        round["winnerWeapon"]="rock";
+        round["loserWeapon"]="scissors";
 
     }else if(playerChoice=="rock" && ComputerChoice=="paper"){
-        return "computer";
-    }else if(playerChoice =="papper" && ComputerChoice=="scissors"){
-        return "computer";
+        round["winner"]="computer";
+        round["winnerWeapon"]="paper";
+        round["loserWeapon"]="rock";
+    }else if(playerChoice =="paper" && ComputerChoice=="scissors"){
+        round["winner"]="computer";
+        round["winnerWeapon"]="scissors";
+        round["loserWeapon"]="paper";
     }else{
-        return "draw";
+        round["winner"]="both";
     }
+    return round;
 }
 
-function playgame(){
+function playGame(){
     let playerScore=0;
     let computerScore=0;
 
     for(let i=0 ;i<5;i++){
-        let value =playRound();
-        if(value == "user"){
+        let value=playRound();
+        if(value["winner"] == "user"){
             playerScore ++;
-            console.log(`you win! you score is ${playerScore} and computer score ${computerScore}`);
-        }else if(value == "computer"){
-            computerScore ++;
-            console.log(`you lose! your score is ${playerScore} and computer ${computerScore} `);
-        }else if(value=="draw"){
-            console.log(`draw  your score is ${playerScore} and computer ${computerScore}`);
-        }else{
-            console.log("invalid input");
-            i=i-1;
+          
+        }else if(value["winner"] == "computer"){
+            computerScore ++;     
         }
+        (value["winner"] != "both") ? console.log(`winner is ${value["winner"]} , ${value["winnerWeapon"]} beats ${value["loserWeapon"]}`) : console.log(`its a tie`)
     }
     if(computerScore < playerScore){
         console.log(`you win ${playerScore} : ${computerScore}`);
