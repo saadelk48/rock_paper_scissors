@@ -1,0 +1,74 @@
+@font-face {
+    font-family: press_start;
+    src: url(fonts/PressStart2P-vaV7.ttf);
+}
+@font-face {
+    font-family: roboto;
+    src: url(fonts/Roboto-Medium.ttf);
+}
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+body{
+    background-color: #222831;
+}
+header{
+    padding: 2rem 0rem;
+    background-color: #111720;
+    display: flex;
+    justify-content: center;
+}
+header h1{
+    font-family: press_start;
+    color: #fac650;
+    font-size: 32px;
+}
+main{
+    background-color: #222831;
+    text-align: center;
+    padding-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+#game_info{
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+#game_info h2,h3{
+    color: #ddd;
+    font-family: roboto;
+
+}
+.question_mark{
+    width:5rem ;
+}
+#scores_container{
+    display: flex;
+    justify-content: center;
+    gap: 5rem;
+}
+.score{
+    color: #ddd;
+}
+#weapon_board{
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    padding-top: 4rem;
+}
+.weapon_button{
+    width: 10rem;
+    height: 10rem;
+    font-size: 7rem;
+    background-color: #393e46;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+
+

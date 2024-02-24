@@ -3,55 +3,65 @@ function getComputerChoice(){
     return  answers[Math.floor(Math.random() * answers.length)];
 }
 
-function getPlayerChoice(){
-     return prompt("enter your answer").toLowerCase();
-}
-function verifyPlayerInput(answer){
-    if(answer === "rock" || answer ==="paper" || answer ==="scissors"){
-        return true;
-    }else{
-        return false;
-    }
-}
+let computerScore=0;
+let playerScore=0;
+let roundCount=0;
 
-function playRound(){
-    let playerChoice=getPlayerChoice();
-    if(verifyPlayerInput(playerChoice)==false){
-        return "invalid input";
+
+
+
+function playRound(playerChoice){
+
+    if(roundCount<5){
+        let ComputerChoice= getComputerChoice();
+
+        
+        let round={};
+        if (playerChoice == "rock" && ComputerChoice =="scissors"){
+            round["winner"]="user";
+            round["winnerWeapon"]="rock";
+            round["loserWeapon"]="scissors";
+        }else if(playerChoice =="paper" && ComputerChoice == "rock"){
+            round["winner"]="user";
+            round["winnerWeapon"]="paper";
+            round["loserWeapon"]="rock";
+        }else if(playerChoice =="scissors" && ComputerChoice=="paper"){
+            round["winner"]="user";
+            round["winnerWeapon"]="scissors";
+            round["loserWeapon"]="paper";
+        }else if(playerChoice =="scissors" && ComputerChoice=="rock"){
+            round["winner"]="computer";
+            round["winnerWeapon"]="rock";
+            round["loserWeapon"]="scissors";
+
+        }else if(playerChoice=="rock" && ComputerChoice=="paper"){
+            round["winner"]="computer";
+            round["winnerWeapon"]="paper";
+            round["loserWeapon"]="rock";
+        }else if(playerChoice =="paper" && ComputerChoice=="scissors"){
+            round["winner"]="computer";
+            round["winnerWeapon"]="scissors";
+            round["loserWeapon"]="paper";
+        }else{
+            round["winner"]="both";
+        }
+
+
+            roundCount++;
+            if(round["winner"]=="computer"){
+                computerScore++;
+            }else if(round["winner"]=="user"){
+                playerScore++;
+            }
+    }else{
+        if(computerScore>playerScore){
+            alert("you lose");
+        }else{
+            alert("you win");
+        }
     }
-    let ComputerChoice= getComputerChoice();
 
     
-    let round={};
-    if (playerChoice == "rock" && ComputerChoice =="scissors"){
-        round["winner"]="user";
-        round["winnerWeapon"]="rock";
-        round["loserWeapon"]="scissors";
-    }else if(playerChoice =="paper" && ComputerChoice == "rock"){
-        round["winner"]="user";
-        round["winnerWeapon"]="paper";
-        round["loserWeapon"]="rock";
-    }else if(playerChoice =="scissors" && ComputerChoice=="paper"){
-        round["winner"]="user";
-        round["winnerWeapon"]="scissors";
-        round["loserWeapon"]="paper";
-    }else if(playerChoice =="scissors" && ComputerChoice=="rock"){
-        round["winner"]="computer";
-        round["winnerWeapon"]="rock";
-        round["loserWeapon"]="scissors";
-
-    }else if(playerChoice=="rock" && ComputerChoice=="paper"){
-        round["winner"]="computer";
-        round["winnerWeapon"]="paper";
-        round["loserWeapon"]="rock";
-    }else if(playerChoice =="paper" && ComputerChoice=="scissors"){
-        round["winner"]="computer";
-        round["winnerWeapon"]="scissors";
-        round["loserWeapon"]="paper";
-    }else{
-        round["winner"]="both";
-    }
-    return round;
 }
 
 function playGame(){
