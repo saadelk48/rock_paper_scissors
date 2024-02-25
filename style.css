@@ -44,7 +44,7 @@ main{
 
 }
 .question_mark{
-    width:5rem ;
+    font-size:7rem ;
 }
 #scores_container{
     display: flex;
@@ -68,6 +68,18 @@ main{
     border: none;
     border-radius: 10px;
     cursor: pointer;
+}
+
+footer{
+    display: flex;
+    justify-content: center;
+}
+footer p{
+    position: absolute;
+    color: #ddd;
+    font-family: roboto;
+    bottom: 10px;
+    
 }
 
 

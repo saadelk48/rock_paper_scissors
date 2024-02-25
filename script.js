@@ -7,6 +7,19 @@ let computerScore=0;
 let playerScore=0;
 let roundCount=0;
 
+let playerWeapon=document.getElementById("player_weapon");
+let computerWeapon=document.getElementById("computer_weapon");
+
+let playerScorePlacement=document.getElementById("player_score");
+let computerScorePlacement=document.getElementById("computer_score");
+
+let message=document.querySelector("#game_info h2");
+console.log(message);
+
+let explain=document.querySelector("#game_info h3");
+console.log(explain);
+
+
 
 
 
@@ -44,14 +57,88 @@ function playRound(playerChoice){
             round["loserWeapon"]="paper";
         }else{
             round["winner"]="both";
+            if(playerChoice=="rock"){
+                round["winnerWeapon"]="rock";
+                round["loserWeapon"]="rock";  
+            }else if(playerChoice=="paper"){
+                round["winnerWeapon"]="paper";
+                round["loserWeapon"]="paper";
+            }else if(playerChoice=="scissors"){
+                round["winnerWeapon"]="scissors";
+                round["loserWeapon"]="scissors"; 
+            }
+        }
+        console.log(round);
+
+        
+
+        if(round["winner"]=="computer"){
+                computerScore++;
+        }else if(round["winner"]=="user"){
+                playerScore++;
+        }
+        playerScorePlacement.textContent=`${playerScore}`;
+        computerScorePlacement.textContent=`${computerScore}`;
+        roundCount++;
+       
+
+        if(round["winner"]=="user"){
+            message.textContent=`${"you won"}`;
+            explain.textContent=`${round["winnerWeapon"] +" beats "+round["loserWeapon"]}`;
+
+            if((round["winnerWeapon"]=="rock")&&(round["loserWeapon"]=="scissors")){
+                playerWeapon.textContent="✊";
+                computerWeapon.textContent="✌";
+            }else if((round["winnerWeapon"]=="paper")&& (round["loserWeapon"]=="rock")){
+                playerWeapon.textContent="✋";
+                computerWeapon.textContent="✊";
+            }else if((round["winnerWeapon"]=="scissors")&&(round["loserWeapon"]=="paper")){
+                playerWeapon.textContent="✌";
+                computerWeapon.textContent="✋";
+            }
+   
+        }else if(round["winner"]=="computer"){
+            message.textContent=`${"you lost"}`;
+            explain.textContent=`${round["winnerWeapon"] +" beats "+round["loserWeapon"]}`;
+
+            if((round["winnerWeapon"]=="rock")&&(round["loserWeapon"]=="scissors")){
+                playerWeapon.textContent="✌";
+                computerWeapon.textContent="✊";
+            }else if((round["winnerWeapon"]=="paper")&& (round["loserWeapon"]=="rock")){
+                playerWeapon.textContent="✊";
+                computerWeapon.textContent="✋";
+            }else if((round["winnerWeapon"]=="scissors")&&(round["loserWeapon"]=="paper")){
+                playerWeapon.textContent="✋";
+                computerWeapon.textContent="✌";
+            }
+
+        }else if(round["winner"]=="both"){
+        message.textContent=`${"its a tie"}`;
+        explain.textContent=`${round["winnerWeapon"] + " tie "+ round["loserWeapon"]}`;
+
+        if((round["winnerWeapon"]=="rock")&&(round["loserWeapon"]=="rock")){
+            playerWeapon.textContent="✊";
+            computerWeapon.textContent="✊";
+        }else if((round["winnerWeapon"]=="paper")&& (round["loserWeapon"]=="paper")){
+            playerWeapon.textContent="✋";
+            computerWeapon.textContent="✋";
+        }else if((round["winnerWeapon"]=="scissors")&&(round["loserWeapon"]=="paper")){
+            playerWeapon.textContent="✌";
+            computerWeapon.textContent="✌";
         }
 
+        }
 
-            roundCount++;
-            if(round["winner"]=="computer"){
-                computerScore++;
-            }else if(round["winner"]=="user"){
-                playerScore++;
+        
+            if (roundCount == 5) {
+                // Use setTimeout to delay the alert after loading the last round
+                setTimeout(function() {
+                    if (computerScore > playerScore) {
+                        alert("You lose");
+                    } else {
+                        alert("You win");
+                    }
+                }, 500); // Adjust the delay time as needed
             }
     }else{
         if(computerScore>playerScore){
@@ -59,9 +146,7 @@ function playRound(playerChoice){
         }else{
             alert("you win");
         }
-    }
-
-    
+    } 
 }
 
 function playGame(){
